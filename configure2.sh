@@ -38,7 +38,7 @@ txindex=1
 ENDCONF
 }
 sync_bitcoin () {
-  cd .bitcoin
+  cd ~/.bitcoin
   LOCAL="`bitcoin-cli getblockcount`"
   wget https://blockchain.info/q/getblockcount -q -O remote_count
   
