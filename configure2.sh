@@ -2,7 +2,7 @@
 die() { echo "$@" 1>&2 ; exit 1; }
 
 
-mkdir ~/bin ~/src
+mkdir -p ~/bin ~/src
 # Sometimes the path change in ./configure doesn't propagate
 # Fix that.
 PATH="~/bin:$PATH"
@@ -25,44 +25,56 @@ ENDECHO
   strip src/bitcoind src/bitcoin-cli src/bitcoin-tx || die
   cp -a src/bitcoind src/bitcoin-cli src/bitcoin-tx ~/bin || die
 }
+configure_bitcoin () {
+  cd ~
+  mkdir .bitcoin
+  cd .bitcoin
+  PASSWORD="$RANDOM-$RANDOM-$RANDOM-$RANDOM"
+  cat <<ENDCONF > bitcoin.conf
+  rpcuser=rpcuser
+  rpcpassword=$PASSWORD
+  daemon=1
+  txindex=1
+  ENDCONF
+}
+sync_bitcoin () {
+  LOCAL="`bitcoin-cli getblockcount`"
+  wget https://blockchain.info/q/getblockcount`" -q -O remote_count
+  
+  until grep -c "^$LOCAL$" remote_count
+  do
+    echo "Local block count: $LOCAL"
+    echo -n "BC.info block count: "
+    cat remote_count
+    LOCAL="`bitcoin-cli getblockcount`"
+    wget https://blockchain.info/q/getblockcount`" -q -O remote_count
+    sleep 60
+  done
+}
+
 
 if [ ! -f "/home/bitcoin/bin/bitcoind" ]; then
   download_bitcoin;
+  configure_bitcoin;
 fi
 
-cd ~
-mkdir .bitcoin
-cd .bitcoin
-PASSWORD="$RANDOM-$RANDOM-$RANDOM-$RANDOM"
-cat <<ENDCONF > bitcoin.conf
-rpcuser=rpcuser
-rpcpassword=$PASSWORD
-daemon=1
-txindex=1
-ENDCONF
 
 # Start bitcoind
-bitcoind
+if pidof -x "bitcoind" >/dev/null; then
+  echo "Bitcoin already running"
+else
+  bitcoind
+fi
 
 sleep 5
+
+sync_bitcoin;
 
 echo <<ENDECHO
 
 ---------------
 Waiting for syncronization...
 ENDECHO
-LOCAL="`bitcoin-cli getblockcount`"
-wget https://blockchain.info/q/getblockcount`" -q -O remote_count
-
-until grep -c "^$LOCAL$" remote_count
-do
-  echo "Local block count: $LOCAL"
-  echo -n "BC.info block count: "
-  cat remote_count
-  LOCAL="`bitcoin-cli getblockcount`"
-  wget https://blockchain.info/q/getblockcount`" -q -O remote_count
-  sleep 60
-done
 
 echo <<ENDECHO
 
