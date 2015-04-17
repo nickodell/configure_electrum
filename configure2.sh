@@ -39,7 +39,7 @@ ENDCONF
 }
 sync_bitcoin () {
   LOCAL="`bitcoin-cli getblockcount`"
-  wget https://blockchain.info/q/getblockcount`" -q -O remote_count
+  wget https://blockchain.info/q/getblockcount -q -O remote_count
   
   until grep -c "^$LOCAL$" remote_count
   do
