@@ -3,6 +3,7 @@ die() { echo "$@" 1>&2 ; exit 1; }
 
 adduser bitcoin --disabled-password
 echo 1
+apt-get update
 apt-get install -y git make g++ python-leveldb libboost-all-dev \
                    libssl-dev libdb++-dev pkg-config || die
 echo 2
