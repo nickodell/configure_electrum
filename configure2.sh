@@ -25,8 +25,8 @@ ENDECHO
   strip src/bitcoind src/bitcoin-cli src/bitcoin-tx || die
   cp -a src/bitcoind src/bitcoin-cli src/bitcoin-tx ~/bin || die
 }
-DAEMON_PATH=
-if [ ! -f "~/bin/bitcoind" ]; then
+
+if [ ! -f "/home/bitcoin/bin/bitcoind" ]; then
   download_bitcoin;
 fi
 
@@ -43,6 +43,8 @@ ENDCONF
 
 # Start bitcoind
 bitcoind
+
+sleep 5
 
 echo <<ENDECHO
 
@@ -70,7 +72,6 @@ ENDECHO
 
 cd ~
 git clone https://github.com/spesmilo/electrum-server.git
-
 
 echo <<ENDECHO
 

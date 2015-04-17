@@ -31,5 +31,5 @@ apt-get install -y python-setuptools python-openssl python-leveldb \
            libleveldb-dev || die
 easy_install jsonrpclib irc plyvel || die
 
-configure || die
+./configure || die
 python setup.py install || die
