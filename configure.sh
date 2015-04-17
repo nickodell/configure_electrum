@@ -4,7 +4,7 @@ die() { echo "$@" 1>&2 ; exit 1; }
 adduser bitcoin --disabled-password
 apt-get update
 apt-get install -y git make g++ python-leveldb libboost-all-dev \
-                   libssl-dev libdb++-dev pkg-config python-setuptools || die
+                   libssl-dev libdb++-dev pkg-config || die
 
 # Fix path
 echo "PATH=\"~/bin:\$PATH\"" >> /etc/bash.bashrc
@@ -26,5 +26,9 @@ ENDECHO
 su bitcoin -c "~/configure2.sh"
 
 cd ~bitcoin/electrum-server
-configure
-python setup.py install
+
+apt-get install python-setuptools python-openssl python-leveldb libleveldb-dev  || die
+easy_install jsonrpclib irc plyvel || die
+
+configure || die
+python setup.py install || die
