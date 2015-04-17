@@ -32,6 +32,26 @@ daemon=1
 txindex=1
 ENDCONF
 
+# Start bitcoind
+bitcoind
+
+echo <<ENDECHO
+
+---------------
+Waiting for syncronization...
+ENDECHO
+LOCAL="`bitcoin-cli getblockcount`"
+wget https://blockchain.info/q/getblockcount`" -q -O remote_count
+
+until grep -c "^$LOCAL$" remote_count
+do
+  echo "Local block count: $LOCAL"
+  echo -n "BC.info block count: "
+  cat remote_count
+  LOCAL="`bitcoin-cli getblockcount`"
+  wget https://blockchain.info/q/getblockcount`" -q -O remote_count
+  sleep 60
+done
 
 echo <<ENDECHO
 

@@ -5,7 +5,8 @@ adduser bitcoin --disabled-password
 echo 1
 apt-get update
 apt-get install -y git make g++ python-leveldb libboost-all-dev \
-                   libssl-dev libdb++-dev pkg-config || die
+                   libssl-dev libdb++-dev pkg-config python-setuptools || die
+
 echo 2
 # Fix path
 echo "PATH=\"\$HOME/bin:\$PATH\"" >> ~bitcoin/.login
