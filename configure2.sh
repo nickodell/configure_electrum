@@ -26,7 +26,7 @@ ENDECHO
   cp -a src/bitcoind src/bitcoin-cli src/bitcoin-tx ~/bin || die
 }
 DAEMON_PATH=
-if [ ~ -f "~/bin/bitcoind" ]; then
+if [ ! -f "~/bin/bitcoind" ]; then
   download_bitcoin;
 fi
 
