@@ -60,7 +60,7 @@ fi
 
 
 # Start bitcoind
-if pidof -x "bitcoind" >/dev/null; then
+if pidof -x bitcoind >/dev/null; then
   echo test
 else
   bitcoind;
