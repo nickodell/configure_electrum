@@ -3,7 +3,10 @@ die() { echo "$@" 1>&2 ; exit 1; }
 
 
 mkdir ~/bin ~/src
-echo "\$PATH=$PATH"
+# Sometimes the path change in ./configure doesn't propagate
+# Fix that.
+PATH="~/bin:$PATH"
+#echo "\$PATH=$PATH"
 
 download_bitcoin () {
 echo <<ENDECHO
@@ -22,7 +25,8 @@ ENDECHO
   strip src/bitcoind src/bitcoin-cli src/bitcoin-tx || die
   cp -a src/bitcoind src/bitcoin-cli src/bitcoin-tx ~/bin || die
 }
-if [ ~ -f ~/bin/bitcoind ]; then
+DAEMON_PATH=
+if [ ~ -f "~/bin/bitcoind" ]; then
   download_bitcoin;
 fi
 
