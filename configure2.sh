@@ -47,7 +47,7 @@ sync_bitcoin () {
     echo -n "BC.info block count: "
     cat remote_count
     LOCAL="`bitcoin-cli getblockcount`"
-    wget https://blockchain.info/q/getblockcount`" -q -O remote_count
+    wget https://blockchain.info/q/getblockcount -q -O remote_count
     sleep 60
   done
 }
@@ -60,8 +60,8 @@ fi
 
 
 # Start bitcoind
-if pidof -x bitcoind >/dev/null; then
-  echo test
+if pidof -x "bitcoind" >/dev/null; then
+  echo Bitcoin already running
 else
   bitcoind;
 fi
