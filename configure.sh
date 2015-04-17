@@ -13,14 +13,18 @@ echo "PATH=\"\$HOME/bin:\$PATH\"" >> ~bitcoin/.login
 chown bitcoin:bitcoin ~bitcoin/.login
 
 
+
+#Copy second script to userspace
+cp "$DIR/configure2.sh" ~bitcoin
+chown bitcoin:bitcoin ~bitcoin/configure2.sh
+
 echo <<ENDECHO
 
 ----------------------------
 Changing to bitcoin user...
 ENDECHO
 
-chown bitcoin:bitcoin "$DIR/configure2.sh"
-su bitcoin -c "$DIR/configure2.sh"
+su bitcoin -c "~/configure2.sh"
 
 cd ~bitcoin/electrum-server
 configure
