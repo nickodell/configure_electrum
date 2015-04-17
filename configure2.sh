@@ -42,7 +42,7 @@ sync_bitcoin () {
   LOCAL="`bitcoin-cli getblockcount`"
   wget https://blockchain.info/q/getblockcount -q -O remote_count
   
-  until grep -c "^$LOCAL$" remote_count 2> /dev/null
+  until grep -c "^$LOCAL$" remote_count > /dev/null
   do
     echo "Local block count: $LOCAL"
     echo -n "BC.info block count: "
