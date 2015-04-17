@@ -61,9 +61,9 @@ fi
 
 # Start bitcoind
 if pidof -x "bitcoind" >/dev/null; then
-  echo Bitcoin already running
+  echo test
 else
-  bitcoind
+  bitcoind;
 fi
 
 sleep 5
