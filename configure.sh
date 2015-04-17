@@ -25,6 +25,7 @@ ENDECHO
 
 su bitcoin -c "~/configure2.sh"
 
+exit
 cd ~bitcoin/electrum-server
 
 apt-get install -y python-setuptools python-openssl python-leveldb \

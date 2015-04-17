@@ -30,12 +30,12 @@ configure_bitcoin () {
   mkdir .bitcoin
   cd .bitcoin
   PASSWORD="$RANDOM-$RANDOM-$RANDOM-$RANDOM"
-  cat <<ENDCONF > bitcoin.conf
-  rpcuser=rpcuser
-  rpcpassword=$PASSWORD
-  daemon=1
-  txindex=1
-  ENDCONF
+cat <<ENDCONF > bitcoin.conf
+rpcuser=rpcuser
+rpcpassword=$PASSWORD
+daemon=1
+txindex=1
+ENDCONF
 }
 sync_bitcoin () {
   LOCAL="`bitcoin-cli getblockcount`"
