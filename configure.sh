@@ -34,7 +34,7 @@ easy_install jsonrpclib irc plyvel || die
 echo
 echo "Running ./configure"
 # Patch configure
-sed -i "s/read -p \"Do you want to download it from the Electrum.*/\$REPLY=Y/" configure
+sed -i "s/read -p \"Do you want to download it from the Electrum.*/REPLY=Y/" configure
 ./configure || die
 
 echo
