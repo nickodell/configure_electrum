@@ -46,7 +46,7 @@ sync_bitcoin () {
   do
     echo "Local block count: $LOCAL"
     echo -n "BC.info block count: "
-    cat remote_count
+    cat remote_count; echo
     sleep 60
     # Get block count again
     LOCAL="`bitcoin-cli getblockcount`"
@@ -70,7 +70,7 @@ fi
 
 sleep 5
 
-sync_bitcoin;
+#sync_bitcoin;
 
 echo <<ENDECHO
 

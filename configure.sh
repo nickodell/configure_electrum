@@ -25,11 +25,10 @@ ENDECHO
 
 su bitcoin -c "~/configure2.sh"
 
-exit
 cd ~bitcoin/electrum-server
 
 apt-get install -y python-setuptools python-openssl python-leveldb \
-           libleveldb-dev || die
+                   libleveldb-dev || die
 easy_install jsonrpclib irc plyvel || die
 
 ./configure || die
