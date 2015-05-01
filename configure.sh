@@ -40,3 +40,9 @@ sed -i "s/read -p \"Do you want to download it from the Electrum.*/REPLY=Y/" con
 echo
 echo "Running setup.py"
 python setup.py install || die
+
+# Set it up
+adduser electrum --disabled-password
+chown electrum:electrum /var/log/electrum.log
+su electrum -c "crontab -l | { cat; echo \"0 * * * * electrum-server start\"; } | crontab -"
+su electrum -c "crontab -l | { cat; echo \"@reboot electrum-server start\"; } | crontab -"
