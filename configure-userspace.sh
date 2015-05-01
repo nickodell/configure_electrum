@@ -1,4 +1,7 @@
+#!/bin/bash
+# Nick O'Dell
 # To be run as the bitcoin user
+
 die() { echo "$@" 1>&2 ; exit 1; }
 
 
@@ -76,6 +79,7 @@ echo <<ENDECHO
 Waiting for syncronization...
 ENDECHO
 
+# Don't wait for Bitcoin to finish syncing, it takes forever and electrum can download LevelDB while we wait.
 #sync_bitcoin;
 
 echo <<ENDECHO

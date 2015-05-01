@@ -14,7 +14,7 @@ chown bitcoin:bitcoin ~bitcoin/.login
 
 
 #Copy second script to home
-cp "$DIR/configure2.sh" ~bitcoin
+cp "$DIR/configure-userspace.sh" ~bitcoin
 chown bitcoin:bitcoin ~bitcoin/configure2.sh
 
 echo <<ENDECHO
