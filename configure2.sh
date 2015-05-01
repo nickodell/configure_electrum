@@ -70,13 +70,13 @@ fi
 
 sleep 5
 
-#sync_bitcoin;
-
 echo <<ENDECHO
 
 ---------------
 Waiting for syncronization...
 ENDECHO
+
+#sync_bitcoin;
 
 echo <<ENDECHO
 
