@@ -1,3 +1,4 @@
+#!/bin/bash
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 die() { echo "$@" 1>&2 ; exit 1; }
 
@@ -15,7 +16,7 @@ chown bitcoin:bitcoin ~bitcoin/.login
 
 #Copy second script to home
 cp "$DIR/configure-userspace.sh" ~bitcoin
-chown bitcoin:bitcoin ~bitcoin/configure2.sh
+chown bitcoin:bitcoin ~bitcoin/configure-userspace.sh
 
 echo <<ENDECHO
 
@@ -23,7 +24,7 @@ echo <<ENDECHO
 Changing to bitcoin user...
 ENDECHO
 
-su bitcoin -c "~/configure2.sh"
+su bitcoin -c "~/configure-userspace.sh"
 
 cd ~bitcoin/electrum-server
 
