@@ -1,4 +1,16 @@
 #!/bin/bash
+# Nick O'Dell
+# Sets up worker node. Run by ./copy_to_target.sh
+
+# It does these major things:
+#Installs dependencies
+#Downloads Bitcoin source
+#Makes a bitcoin user to run the Bitcoin client.
+#Steps down into bitcoin, and runs configure-userspace.sh
+#Makes an electrum user to run the electrum client
+#Installs Electrum
+#Configures crontabs for electrum
+
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 die() { echo "$@" 1>&2 ; exit 1; }
 

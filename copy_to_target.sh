@@ -1,4 +1,8 @@
 #!/bin/bash
+# Copies this repository to the remote system, then starts the config script
+# there.
+# Usage: ./copy_to_target.sh root@[worker-ip]
+
 git add .
 git commit -m "Automatically generated commit"
 git push

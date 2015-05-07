@@ -1,6 +1,8 @@
 #!/bin/bash
 # Nick O'Dell
 # To be run as the bitcoin user
+# Does all of the compilation steps that can be done as an unprivledged user,
+# then starts bitcoind
 
 die() { echo "$@" 1>&2 ; exit 1; }
 
